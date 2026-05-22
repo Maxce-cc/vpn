@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Eternal VPN — 17 servers | 350GB free | Happ + V2rayTun</title>
+    <title>Zenit VPN — 17 servers | 350GB free</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -19,14 +19,33 @@
             color: #eef2ff;
             line-height: 1.5;
             scroll-behavior: smooth;
+            transition: background 0.2s;
         }
 
-        :root {
+        /* Theme variables - RED default */
+        body[data-theme="red"] {
+            --accent: #ef4444;
+            --accent-light: #f87171;
+            --accent-dark: #dc2626;
+            --accent-glow: rgba(239, 68, 68, 0.25);
+        }
+        body[data-theme="blue"] {
             --accent: #3b82f6;
-            --accent-glow: #6366f1;
             --accent-light: #60a5fa;
-            --card-bg: #0f1322;
-            --border-dim: #1e243b;
+            --accent-dark: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.25);
+        }
+        body[data-theme="green"] {
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --accent-dark: #059669;
+            --accent-glow: rgba(16, 185, 129, 0.25);
+        }
+        body[data-theme="purple"] {
+            --accent: #a855f7;
+            --accent-light: #c084fc;
+            --accent-dark: #9333ea;
+            --accent-glow: rgba(168, 85, 247, 0.25);
         }
 
         .container {
@@ -35,6 +54,7 @@
             padding: 0 24px;
         }
 
+        /* navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -52,7 +72,7 @@
 
         .logo i {
             font-size: 2.3rem;
-            background: linear-gradient(135deg, #3b82f6, #a855f7);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -61,7 +81,7 @@
         .logo h1 {
             font-size: 1.9rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff, #b9c7ff);
+            background: linear-gradient(135deg, #fff, #e2e8f0);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -97,11 +117,11 @@
         }
 
         .btn-outline:hover {
-            background: rgba(59,130,246,0.2);
+            background: var(--accent-glow);
         }
 
         .btn-primary {
-            background: linear-gradient(100deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(100deg, var(--accent), var(--accent-light));
             border: none;
             padding: 12px 28px;
             border-radius: 40px;
@@ -109,14 +129,48 @@
             color: white;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 8px 20px -8px #3b82f6;
+            box-shadow: 0 8px 20px -8px var(--accent);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px -10px #3b82f6;
+            box-shadow: 0 12px 24px -10px var(--accent);
         }
 
+        /* theme switcher - clean, no background bar */
+        .theme-switcher {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0 10px;
+        }
+        .color-options {
+            display: flex;
+            gap: 12px;
+            background: transparent;
+            padding: 0;
+        }
+        .color-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .color-dot:hover {
+            transform: scale(1.1);
+            border-color: white;
+        }
+        .color-dot.active {
+            border-color: white;
+            box-shadow: 0 0 8px white;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-blue { background: #3b82f6; }
+        .dot-green { background: #10b981; }
+        .dot-purple { background: #a855f7; }
+
+        /* hero */
         .hero {
             display: flex;
             align-items: center;
@@ -131,12 +185,12 @@
         }
 
         .hero-badge {
-            background: rgba(59,130,246,0.2);
+            background: var(--accent-glow);
             width: fit-content;
             padding: 6px 18px;
             border-radius: 40px;
             font-size: 0.85rem;
-            border: 1px solid rgba(59,130,246,0.4);
+            border: 1px solid var(--accent);
             margin-bottom: 24px;
         }
 
@@ -144,7 +198,7 @@
             font-size: 3rem;
             font-weight: 800;
             line-height: 1.2;
-            background: linear-gradient(to right, #fff, #a5c0ff);
+            background: linear-gradient(to right, #fff, var(--accent-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -169,10 +223,11 @@
             color: var(--accent-light);
         }
 
-        .shield-icon {
+        .zenit-icon {
             font-size: 11rem;
-            color: rgba(59,130,246,0.2);
-            filter: drop-shadow(0 0 20px #3b82f6);
+            color: rgba(239, 68, 68, 0.15);
+            filter: drop-shadow(0 0 20px var(--accent));
+            transition: 0.3s;
         }
 
         .section-title {
@@ -226,9 +281,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: 0.2s;
             border: 1px solid #252d48;
-            cursor: pointer;
+            cursor: default;
+            user-select: none;
         }
 
         .server-chip i {
@@ -237,13 +292,12 @@
 
         .server-chip.special {
             background: linear-gradient(145deg, #1a1f35, #0f1326);
-            border-color: #4f8eff;
+            border-color: var(--accent);
         }
 
         .auto-chip {
             background: #2a2f4b;
-            border: 1px solid #60a5fa;
-            color: white;
+            border: 1px solid var(--accent);
         }
 
         .features-grid {
@@ -254,10 +308,10 @@
         }
 
         .feature-card {
-            background: var(--card-bg);
+            background: #0f1322;
             padding: 28px 22px;
             border-radius: 32px;
-            border: 1px solid var(--border-dim);
+            border: 1px solid #1e243b;
             transition: 0.25s;
         }
 
@@ -268,7 +322,7 @@
 
         .feature-icon {
             font-size: 2.2rem;
-            background: linear-gradient(145deg, #3b82f6, #c084fc);
+            background: linear-gradient(145deg, var(--accent), var(--accent-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -293,9 +347,9 @@
         }
 
         .free-card {
-            border: 1px solid #3b82f6;
+            border: 1px solid var(--accent);
             background: linear-gradient(145deg, #0f1326, #0a0e1c);
-            box-shadow: 0 0 18px rgba(59,130,246,0.2);
+            box-shadow: 0 0 18px var(--accent-glow);
         }
 
         .coming-card {
@@ -309,7 +363,7 @@
         }
 
         .data-limit {
-            background: rgba(59,130,246,0.2);
+            background: var(--accent-glow);
             display: inline-block;
             padding: 6px 18px;
             border-radius: 60px;
@@ -332,7 +386,7 @@
         }
 
         .free-download-btn {
-            background: linear-gradient(100deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(100deg, var(--accent), var(--accent-light));
             width: 100%;
             padding: 14px 12px;
             border-radius: 60px;
@@ -349,7 +403,7 @@
 
         .subscription-btn {
             background: rgba(255,255,255,0.08);
-            border: 1px solid #3b82f6;
+            border: 1px solid var(--accent);
             width: 100%;
             padding: 14px 12px;
             border-radius: 60px;
@@ -374,9 +428,6 @@
             color: #cfdcff;
         }
 
-        .platforms-section {
-            margin: 30px 0 30px;
-        }
         .platform-cards {
             display: flex;
             flex-wrap: wrap;
@@ -387,8 +438,8 @@
         .platform-card {
             background: #0c1122;
             border-radius: 32px;
-            padding: 28px 24px;
-            width: 200px;
+            padding: 24px 20px;
+            width: 180px;
             text-align: center;
             border: 1px solid #252e48;
             transition: 0.2s;
@@ -397,20 +448,15 @@
         .platform-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
-            background: #10162a;
         }
         .platform-card i {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--accent-light);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .platform-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-        .platform-card p {
-            font-size: 0.8rem;
-            color: #9aabcf;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
         }
 
         .cta-section {
@@ -431,7 +477,7 @@
             gap: 12px;
             font-family: monospace;
             font-size: 0.85rem;
-            border: 1px solid #3b82f6;
+            border: 1px solid var(--accent);
             margin-top: 20px;
             word-break: break-all;
             max-width: 100%;
@@ -469,7 +515,7 @@
             border-radius: 60px;
             color: white;
             z-index: 999;
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid var(--accent);
             display: none;
             align-items: center;
             gap: 10px;
@@ -479,20 +525,18 @@
 
         @media (max-width: 700px) {
             .hero-content h2 { font-size: 2rem; }
-            .shield-icon { font-size: 7rem; }
+            .zenit-icon { font-size: 7rem; }
+            .theme-switcher { justify-content: center; }
             .toast-msg { white-space: normal; width: 90%; justify-content: center; }
-            .platform-card { width: 160px; padding: 20px 16px; }
-            .url-box { font-size: 0.7rem; }
         }
     </style>
 </head>
-<body>
-
+<body data-theme="red">
 <div class="container">
     <nav class="navbar">
         <div class="logo">
-            <i class="fas fa-shield-haltered"></i>
-            <h1>Eternal VPN</h1>
+            <i class="fas fa-mountain-sun"></i>
+            <h1>Zenit VPN</h1>
         </div>
         <div class="nav-links">
             <a href="#servers">Servers</a>
@@ -503,12 +547,22 @@
         </div>
     </nav>
 
+    <!-- Theme switcher - clean, just the color dots -->
+    <div class="theme-switcher">
+        <div class="color-options">
+            <div class="color-dot dot-red" data-color="red"></div>
+            <div class="color-dot dot-blue" data-color="blue"></div>
+            <div class="color-dot dot-green" data-color="green"></div>
+            <div class="color-dot dot-purple" data-color="purple"></div>
+        </div>
+    </div>
+
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-globe"></i> 17 ultra‑fast locations | Happ + V2rayTun</div>
-            <h2>350GB free VPN.<br>Eternal & private.</h2>
+            <div class="hero-badge"><i class="fas fa-globe"></i> 17 ultra‑fast locations | Zenit power</div>
+            <h2>350GB free VPN.<br>Zenit — peak privacy.</h2>
             <p class="hero-desc">Military-grade encryption, 17 global servers including auto‑select & proxies. Works with Happ, V2rayTun and all major VPN clients.</p>
-            <button class="btn-primary" id="heroInstallHappBtn"><i class="fab fa-android"></i> Get Eternal Free → Open in Happ</button>
+            <button class="btn-primary" id="heroInstallHappBtn"><i class="fab fa-android"></i> Get Zenit Free → Open in Happ</button>
             <div class="hero-stats">
                 <div class="stat"><p>17</p><span>servers</span></div>
                 <div class="stat"><p>350 GB</p><span>free monthly</span></div>
@@ -516,13 +570,13 @@
             </div>
         </div>
         <div class="hero-graphic">
-            <i class="fas fa-shield-haltered shield-icon"></i>
+            <i class="fas fa-mountain-sun zenit-icon"></i>
         </div>
     </div>
 
-    <!-- Servers list -->
+    <!-- Servers section - purely visual, no click events -->
     <div id="servers"></div>
-    <div class="section-title">Our <span style="color:#60a5fa;">server network</span></div>
+    <div class="section-title">Our <span style="color: var(--accent-light);">server network</span></div>
     <div class="section-sub">17 premium locations + Smart auto‑selection & dedicated proxies</div>
     <div class="servers-wrapper">
         <div class="server-category">
@@ -557,18 +611,10 @@
                 <div class="server-chip special"><i class="fas fa-user-secret"></i> Proxy #2 (residential)</div>
             </div>
         </div>
-        <div class="server-category">
-            <div class="category-title"><i class="fas fa-chart-line"></i> Total coverage</div>
-            <div class="server-chips">
-                <div class="server-chip"><i class="fas fa-check-circle"></i> 17 active nodes</div>
-                <div class="server-chip"><i class="fas fa-sync-alt"></i> Auto‑failover ready</div>
-            </div>
-        </div>
     </div>
 
-    <!-- Features -->
     <div id="features"></div>
-    <div class="section-title">Why <span style="color:#60a5fa;">Eternal</span> is different</div>
+    <div class="section-title">Why <span style="color: var(--accent-light);">Zenit</span> is different</div>
     <div class="features-grid">
         <div class="feature-card"><div class="feature-icon"><i class="fas fa-lock"></i></div><h3>AES-256 + WireGuard®</h3><p>Next-gen encryption & tunneling for max speed & security.</p></div>
         <div class="feature-card"><div class="feature-icon"><i class="fas fa-ban"></i></div><h3>Strict No‑logs</h3><p>Audited zero-log policy — your activity never stored.</p></div>
@@ -578,14 +624,13 @@
         <div class="feature-card"><div class="feature-icon"><i class="fas fa-plug"></i></div><h3>Kill Switch</h3><p>Prevents IP leaks if VPN drops — full anonymity.</p></div>
     </div>
 
-    <!-- Pricing: Free 350GB + Coming soon paid -->
     <div id="pricing"></div>
-    <div class="section-title">Simple <span style="color:#60a5fa;">pricing</span></div>
+    <div class="section-title">Simple <span style="color: var(--accent-light);">pricing</span></div>
     <div class="section-sub">Start with 350GB/month free — paid plans are on the horizon</div>
     <div class="pricing-row">
         <div class="pricing-card free-card">
-            <i class="fas fa-gift" style="font-size: 2rem; color:#60a5fa;"></i>
-            <h3>Eternal Free</h3>
+            <i class="fas fa-gift" style="font-size: 2rem; color: var(--accent-light);"></i>
+            <h3>Zenit Free</h3>
             <div class="price">$0 <small>/month</small></div>
             <div class="data-limit"><i class="fas fa-hdd"></i> 350 GB data / month</div>
             <ul>
@@ -596,13 +641,13 @@
                 <li><i class="fas fa-check-circle"></i> Kill switch & no logs</li>
                 <li><i class="fas fa-check-circle"></i> Works with Happ & V2rayTun</li>
             </ul>
-            <button class="free-download-btn" id="installViaHappBtn"><i class="fab fa-android"></i> Get Eternal Free → Open in Happ</button>
-            <button class="subscription-btn" id="copyRawUrlBtn"><i class="fas fa-copy"></i> Get Eternal Subscription (raw link)</button>
+            <button class="free-download-btn" id="installViaHappBtn"><i class="fab fa-android"></i> Get Zenit Free → Open in Happ</button>
+            <button class="subscription-btn" id="copyRawUrlBtn"><i class="fas fa-copy"></i> Get Zenit Subscription (raw link)</button>
         </div>
         <div class="pricing-card coming-card">
-            <div class="coming-soon-badge" style="background:#2c3455; display:inline-block; padding:4px 16px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-hourglass-half"></i> Coming soon</div>
+            <div style="background:#2c3455; display:inline-block; padding:4px 16px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-hourglass-half"></i> Coming soon</div>
             <i class="fas fa-crown" style="font-size: 2rem; margin-top: 12px; color: #fbbf24;"></i>
-            <h3 style="margin: 12px 0;">Eternal Pro</h3>
+            <h3 style="margin: 12px 0;">Zenit Pro</h3>
             <div class="price">– <small>premium</small></div>
             <div class="data-limit"><i class="fas fa-infinity"></i> Unlimited data</div>
             <ul>
@@ -612,59 +657,33 @@
                 <li><i class="fas fa-check-circle"></i> Extra proxy locations</li>
             </ul>
             <button class="soon-btn" id="paidSoonBtn"><i class="fas fa-clock"></i> Switching to paid soon</button>
-            <p style="font-size: 0.7rem; margin-top: 12px;">Stay tuned — more features on the way</p>
         </div>
     </div>
 
-    <!-- Platform cards: Happ + V2rayTun -->
     <div id="platforms"></div>
-    <div class="section-title">Works with <span style="color:#60a5fa;">modern clients</span></div>
-    <div class="section-sub">Eternal VPN supports all major platforms via subscription link</div>
+    <div class="section-title">Works with <span style="color: var(--accent-light);">modern clients</span></div>
     <div class="platform-cards">
-        <div class="platform-card" data-platform="Happ">
-            <i class="fas fa-rocket"></i>
-            <h4>Happ</h4>
-            <p>One‑tap install • iOS / Android</p>
-        </div>
-        <div class="platform-card" data-platform="V2rayTun">
-            <i class="fas fa-network-wired"></i>
-            <h4>V2rayTun</h4>
-            <p>Full support • Windows / macOS</p>
-        </div>
-        <div class="platform-card" data-platform="Sing-box">
-            <i class="fas fa-box"></i>
-            <h4>Sing-box</h4>
-            <p>Universal client</p>
-        </div>
-        <div class="platform-card" data-platform="Nekoray">
-            <i class="fas fa-moon"></i>
-            <h4>Nekoray</h4>
-            <p>Cross‑platform</p>
-        </div>
+        <div class="platform-card" data-platform="Happ"><i class="fas fa-rocket"></i><h4>Happ</h4><p>One‑tap install</p></div>
+        <div class="platform-card" data-platform="V2rayTun"><i class="fas fa-network-wired"></i><h4>V2rayTun</h4><p>Full support</p></div>
+        <div class="platform-card" data-platform="Sing-box"><i class="fas fa-box"></i><h4>Sing-box</h4><p>Universal client</p></div>
+        <div class="platform-card" data-platform="Nekoray"><i class="fas fa-moon"></i><h4>Nekoray</h4><p>Cross‑platform</p></div>
     </div>
 
-    <!-- CTA with raw subscription link -->
     <div class="cta-section">
         <h3>Manual subscription import</h3>
-        <p style="margin: 15px 0 10px;">For V2rayTun, Sing-box, Nekoray, Shadowrocket or any VPN client with remote subscription support</p>
+        <p style="margin: 15px 0 10px;">For V2rayTun, Sing-box, Nekoray, Shadowrocket or any VPN client</p>
         <div class="url-box" id="rawUrlBox">
             <i class="fas fa-link"></i>
             <span id="rawSubUrl">https://raw.githubusercontent.com/8zy8dxsnmd-prog/EternalVpn/refs/heads/main/sub.txt</span>
             <i class="fas fa-copy" id="copyRawBoxIcon" style="cursor: pointer; margin-left: 8px;"></i>
         </div>
-        <p style="margin-top: 24px; font-size: 0.85rem;"><i class="fas fa-shield-alt"></i> 350GB/month • No logs • 17 servers + proxies • Auto‑select</p>
     </div>
 
     <footer>
-        <div><i class="fas fa-shield-haltered"></i> Eternal VPN — No boundaries, eternal privacy</div>
-        <div class="social">
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-telegram"></i>
-            <i class="fab fa-github"></i>
-        </div>
+        <div><i class="fas fa-mountain-sun"></i> Zenit VPN — Peak privacy, eternal freedom</div>
+        <div class="social"><i class="fab fa-twitter"></i><i class="fab fa-telegram"></i><i class="fab fa-github"></i></div>
     </footer>
 </div>
-
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
@@ -672,87 +691,72 @@
     function showMessage(text, isError = false) {
         toast.style.display = 'flex';
         toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-circle-check'}"></i> ${text}`;
-        toast.style.borderLeftColor = isError ? '#f97316' : '#3b82f6';
         setTimeout(() => { toast.style.display = 'none'; }, 3200);
     }
 
-    // HAPP DEEP LINK - installs subscription directly
+    // Color theme switcher
+    const colorDots = document.querySelectorAll('.color-dot');
+    const body = document.body;
+    
+    function setTheme(color) {
+        body.setAttribute('data-theme', color);
+        localStorage.setItem('zenit_theme', color);
+        colorDots.forEach(dot => {
+            if(dot.getAttribute('data-color') === color) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    const savedTheme = localStorage.getItem('zenit_theme');
+    if(savedTheme && ['red','blue','green','purple'].includes(savedTheme)) {
+        setTheme(savedTheme);
+    } else {
+        setTheme('red');
+    }
+    
+    colorDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const color = dot.getAttribute('data-color');
+            setTheme(color);
+        });
+    });
+
+    // HAPP DEEP LINK
     const HAPP_SUB_URL = "happ://add/https://raw.githubusercontent.com/8zy8dxsnmd-prog/EternalVpn/refs/heads/main/sub.txt";
     const RAW_SUB_URL = "https://raw.githubusercontent.com/8zy8dxsnmd-prog/EternalVpn/refs/heads/main/sub.txt";
 
-    // Function to open Happ deep link
     function openInHapp() {
         window.location.href = HAPP_SUB_URL;
-        // Fallback message if Happ not installed
         setTimeout(() => {
-            showMessage("If Happ is installed, the subscription will be added automatically. Otherwise, install Happ first or use raw link.", false);
+            showMessage("If Happ is installed, subscription will be added automatically.", false);
         }, 800);
     }
 
-    // Copy raw subscription link
     function copyRawLink() {
         navigator.clipboard.writeText(RAW_SUB_URL).then(() => {
-            showMessage("✅ Raw subscription link copied! Use in V2rayTun, Sing-box, Nekoray, etc.");
-        }).catch(() => {
-            showMessage("⚠️ Manual copy: " + RAW_SUB_URL, true);
-        });
+            showMessage("✅ Raw subscription link copied! Use in V2rayTun, Sing-box, etc.");
+        }).catch(() => showMessage("⚠️ Manual copy needed", true));
     }
 
-    // HERO BUTTON: Get Eternal Free → Open in Happ
-    const heroBtn = document.getElementById('heroInstallHappBtn');
-    if(heroBtn) {
-        heroBtn.addEventListener('click', openInHapp);
-    }
+    document.getElementById('heroInstallHappBtn')?.addEventListener('click', openInHapp);
+    document.getElementById('installViaHappBtn')?.addEventListener('click', openInHapp);
+    document.getElementById('copyRawUrlBtn')?.addEventListener('click', copyRawLink);
+    document.getElementById('copyRawBoxIcon')?.addEventListener('click', copyRawLink);
 
-    // Inside pricing card: "Get Eternal Free → Open in Happ"
-    const installHappBtn = document.getElementById('installViaHappBtn');
-    if(installHappBtn) {
-        installHappBtn.addEventListener('click', openInHapp);
-    }
-
-    // "Get Eternal Subscription (raw link)" button
-    const copyRawBtn = document.getElementById('copyRawUrlBtn');
-    if(copyRawBtn) {
-        copyRawBtn.addEventListener('click', copyRawLink);
-    }
-
-    // Copy icon inside CTA box
-    const copyBoxIcon = document.getElementById('copyRawBoxIcon');
-    if(copyBoxIcon) {
-        copyBoxIcon.addEventListener('click', copyRawLink);
-    }
-
-    // Platform cards: show info
-    const platformCards = document.querySelectorAll('.platform-card');
-    platformCards.forEach(card => {
+    // Platform cards (info only)
+    document.querySelectorAll('.platform-card').forEach(card => {
         card.addEventListener('click', () => {
             const plat = card.getAttribute('data-platform');
-            if(plat === 'Happ') {
-                showMessage("📱 For Happ: click 'Get Eternal Free → Open in Happ' button to auto‑install subscription.", false);
-            } else {
-                showMessage(`🔗 For ${plat}: import subscription using link: ${RAW_SUB_URL}`, false);
-            }
+            if(plat === 'Happ') showMessage("📱 Click 'Get Zenit Free → Open in Happ' to auto-install.", false);
+            else showMessage(`🔗 For ${plat}: import subscription using: ${RAW_SUB_URL}`, false);
         });
     });
 
-    // Server chips interactive
-    const serverChips = document.querySelectorAll('.server-chip');
-    serverChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            const serverName = chip.innerText.trim();
-            showMessage(`🌐 Connecting to ${serverName} via Eternal VPN (350GB free quota)`, false);
-        });
-    });
-
-    // Account button
-    document.getElementById('accountBtn')?.addEventListener('click', () => {
-        showMessage('🔐 Free account: use subscription link in any VPN client. No registration needed.', false);
-    });
-
-    // Paid soon button
-    document.getElementById('paidSoonBtn')?.addEventListener('click', () => {
-        showMessage('⏳ Premium plans are coming very soon! Enjoy 350GB free for now.', false);
-    });
+    document.getElementById('accountBtn')?.addEventListener('click', () => showMessage('🔐 Free account: use subscription link. No registration needed.', false));
+    document.getElementById('paidSoonBtn')?.addEventListener('click', () => showMessage('⏳ Premium plans coming soon! Enjoy 350GB free.', false));
 </script>
 </body>
 </html>
