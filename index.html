@@ -308,7 +308,14 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: stretch;
             gap: 24px;
+        }
+
+        /* Center Premium card */
+        .pricing-row {
+            display: flex;
+            justify-content: center;
         }
 
         .pricing-card {
@@ -320,7 +327,7 @@
             transition: all 0.3s ease;
             flex: 1;
             min-width: 260px;
-            max-width: 350px;
+            max-width: 320px;
         }
 
         .pricing-card:hover {
@@ -329,20 +336,19 @@
             box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
         }
 
-        .free-card {
-            border: 1px solid var(--accent);
-            background: linear-gradient(145deg, #0f1326, #0a0e1c);
-            box-shadow: 0 0 15px var(--accent-glow);
+        /* Specific order: Pro (left), Premium (center), Pro+ (right) */
+        .pro-left {
+            order: 1;
         }
-
-        .premium-card {
+        .premium-center {
+            order: 2;
             border: 2px solid #fbbf24;
             background: linear-gradient(145deg, #1a1520, #0f0c18);
             box-shadow: 0 0 25px rgba(251, 191, 36, 0.2);
             position: relative;
+            transform: scale(1.02);
         }
-
-        .premium-card::before {
+        .premium-center::before {
             content: "⭐ BEST VALUE";
             position: absolute;
             top: -12px;
@@ -355,6 +361,15 @@
             font-weight: 700;
             color: white;
             white-space: nowrap;
+        }
+        .proplus-right {
+            order: 3;
+        }
+
+        .free-card {
+            border: 1px solid var(--accent);
+            background: linear-gradient(145deg, #0f1326, #0a0e1c);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .price {
@@ -446,7 +461,7 @@
             color: var(--accent-light);
         }
 
-        .premium-card li i {
+        .premium-center li i {
             color: #fbbf24;
         }
 
@@ -601,11 +616,28 @@
             white-space: nowrap;
         }
 
+        @media (max-width: 900px) {
+            .pricing-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .pricing-card {
+                max-width: 340px;
+                width: 100%;
+            }
+            .premium-center {
+                transform: scale(1);
+                order: 0;
+            }
+            .pro-left, .proplus-right, .premium-center {
+                order: 0;
+            }
+        }
+
         @media (max-width: 700px) {
             .hero-content h2 { font-size: 2rem; }
             .zenith-icon { font-size: 7rem; }
             .toast-msg { white-space: normal; width: 90%; justify-content: center; }
-            .pricing-card { min-width: 100%; }
             .pricing-group { padding: 16px; }
         }
     </style>
@@ -736,15 +768,15 @@
         </div>
     </div>
 
-    <!-- PRO PLANS - 3 cards with clean descriptions (no dashes) -->
+    <!-- PRO PLANS - with Premium in center -->
     <div class="pricing-group">
         <div class="pricing-header">
             <h3><i class="fas fa-crown"></i> Premium Plans — More power, more freedom</h3>
             <p>🚀 30+ worldwide servers • Unlimited speed • Telegram proxies • Priority support</p>
         </div>
         <div class="pricing-row">
-            <!-- Plan 1: Zenith Pro Monthly -->
-            <div class="pricing-card">
+            <!-- Zenith Pro (left) -->
+            <div class="pricing-card pro-left">
                 <i class="fas fa-rocket" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Pro</h3>
                 <div class="price">199 ₽ <small>/month</small></div>
@@ -762,27 +794,8 @@
                 <button class="pro-btn" data-plan="pro1" data-price="199"><i class="fab fa-telegram"></i> Buy — @Systemm_32</button>
             </div>
 
-            <!-- Plan 2: Zenith Pro+ 3 months -->
-            <div class="pricing-card">
-                <i class="fas fa-crown" style="font-size: 1.8rem; color: #fbbf24;"></i>
-                <h3 style="margin-top: 8px;">Zenith Pro+</h3>
-                <div class="price">499 ₽ <small>/3 months</small></div>
-                <div class="data-limit premium-data"><i class="fas fa-database"></i> 799 GB total</div>
-                <div class="badge premium-badge"><i class="fas fa-globe"></i> 25+ servers</div>
-                <div class="badge proxy-badge"><i class="fab fa-telegram"></i> +2 Telegram proxies</div>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> 25+ servers (EU + US + Asia)</li>
-                    <li><i class="fas fa-check-circle"></i> Priority + optimized routing</li>
-                    <li><i class="fas fa-check-circle"></i> 2x Telegram proxies</li>
-                    <li><i class="fas fa-check-circle"></i> 799 GB data (266GB/month)</li>
-                    <li><i class="fas fa-check-circle"></i> 7 simultaneous devices</li>
-                    <li><i class="fas fa-check-circle"></i> 24/7 VIP support</li>
-                </ul>
-                <button class="pro-btn" data-plan="pro3" data-price="499"><i class="fab fa-telegram"></i> Buy — @Systemm_32</button>
-            </div>
-
-            <!-- Plan 3: Zenith Premium ULTIMATE - clean description without dashes -->
-            <div class="pricing-card premium-card">
+            <!-- Zenith Premium (center) - BEST VALUE -->
+            <div class="pricing-card premium-center">
                 <i class="fas fa-gem" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Premium</h3>
                 <div class="price">899 ₽ <small>/month</small></div>
@@ -803,6 +816,25 @@
                     <li><i class="fas fa-check-circle"></i> 30-day money-back guarantee, risk free</li>
                 </ul>
                 <button class="pro-btn" data-plan="premium" data-price="899"><i class="fab fa-telegram"></i> Buy Premium — @Systemm_32</button>
+            </div>
+
+            <!-- Zenith Pro+ (right) -->
+            <div class="pricing-card proplus-right">
+                <i class="fas fa-crown" style="font-size: 1.8rem; color: #fbbf24;"></i>
+                <h3 style="margin-top: 8px;">Zenith Pro+</h3>
+                <div class="price">499 ₽ <small>/3 months</small></div>
+                <div class="data-limit premium-data"><i class="fas fa-database"></i> 799 GB total</div>
+                <div class="badge premium-badge"><i class="fas fa-globe"></i> 25+ servers</div>
+                <div class="badge proxy-badge"><i class="fab fa-telegram"></i> +2 Telegram proxies</div>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 25+ servers (EU + US + Asia)</li>
+                    <li><i class="fas fa-check-circle"></i> Priority + optimized routing</li>
+                    <li><i class="fas fa-check-circle"></i> 2x Telegram proxies</li>
+                    <li><i class="fas fa-check-circle"></i> 799 GB data (266GB/month)</li>
+                    <li><i class="fas fa-check-circle"></i> 7 simultaneous devices</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 VIP support</li>
+                </ul>
+                <button class="pro-btn" data-plan="pro3" data-price="499"><i class="fab fa-telegram"></i> Buy — @Systemm_32</button>
             </div>
         </div>
     </div>
