@@ -36,7 +36,7 @@
             padding: 0 24px;
         }
 
-        .btn-primary, .pro-btn, .server-chip, .feature-card, .pricing-card, .platform-card, .connect-free-btn {
+        .btn-primary, .pro-btn, .server-chip, .feature-card, .pricing-card, .platform-card, .connect-free-btn, .telegram-proxy-card {
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
@@ -304,18 +304,81 @@
             margin-top: 8px;
         }
 
+        .free-tier-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .telegram-proxy-card {
+            background: #0c1020;
+            border-radius: 24px;
+            padding: 16px 18px;
+            width: 220px;
+            border: 1px solid #262e4a;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .telegram-proxy-card:hover {
+            border-color: #2aabee;
+            transform: translateY(-4px);
+        }
+
+        .telegram-proxy-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: #eef2ff;
+        }
+
+        .proxy-server {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: #9aabcf;
+            word-break: break-all;
+            margin: 6px 0;
+        }
+
+        .warning-badge {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            font-size: 0.6rem;
+            padding: 3px 8px;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .connect-proxy-btn {
+            background: rgba(42, 171, 238, 0.15);
+            border: 1px solid #2aabee;
+            width: 100%;
+            padding: 8px;
+            border-radius: 60px;
+            font-weight: 600;
+            color: #2aabee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+
+        .connect-proxy-btn:hover {
+            background: rgba(42, 171, 238, 0.3);
+            transform: scale(1.01);
+        }
+
         .pricing-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: stretch;
             gap: 24px;
-        }
-
-        /* Center Premium card */
-        .pricing-row {
-            display: flex;
-            justify-content: center;
         }
 
         .pricing-card {
@@ -336,7 +399,13 @@
             box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
         }
 
-        /* Specific order: Pro (left), Premium (center), Pro+ (right) */
+        .free-card {
+            border: 1px solid var(--accent);
+            background: linear-gradient(145deg, #0f1326, #0a0e1c);
+            box-shadow: 0 0 15px var(--accent-glow);
+            max-width: 340px;
+        }
+
         .pro-left {
             order: 1;
         }
@@ -364,12 +433,6 @@
         }
         .proplus-right {
             order: 3;
-        }
-
-        .free-card {
-            border: 1px solid var(--accent);
-            background: linear-gradient(145deg, #0f1326, #0a0e1c);
-            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .price {
@@ -632,6 +695,10 @@
             .pro-left, .proplus-right, .premium-center {
                 order: 0;
             }
+            .free-tier-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 700px) {
@@ -639,6 +706,9 @@
             .zenith-icon { font-size: 7rem; }
             .toast-msg { white-space: normal; width: 90%; justify-content: center; }
             .pricing-group { padding: 16px; }
+            .telegram-proxy-card {
+                width: 260px;
+            }
         }
     </style>
 </head>
@@ -742,14 +812,25 @@
     <div class="section-title">Choose <span style="color: var(--accent-light);">your plan</span></div>
     <div class="section-sub">Free forever or upgrade for the ultimate experience</div>
     
-    <!-- FREE TIER -->
+    <!-- FREE TIER with Telegram proxies on sides - compact design -->
     <div class="pricing-group">
         <div class="pricing-header">
             <h3><i class="fas fa-gift"></i> Free Tier</h3>
             <p>No credit card required • Forever free</p>
         </div>
-        <div class="pricing-row">
-            <div class="pricing-card free-card" style="margin: 0 auto;">
+        <div class="free-tier-wrapper">
+            <!-- Left Telegram Proxy - compact -->
+            <div class="telegram-proxy-card">
+                <h4>Telegram Proxy #1</h4>
+                <div class="proxy-server">proxy-dag.ru:443</div>
+                <div class="warning-badge">May work unstable</div>
+                <button class="connect-proxy-btn" data-proxy="tg://proxy?server=proxy-dag.ru&port=443&secret=7pT8K0hK9uHhyH5ldrM8JXV5YS5ydQ">
+                    Connect in Telegram
+                </button>
+            </div>
+
+            <!-- Free VPN Card -->
+            <div class="pricing-card free-card">
                 <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--accent-light);"></i>
                 <h3 style="margin-top: 10px;">Zenith Free</h3>
                 <div class="price-free">$0 <small>/month</small></div>
@@ -765,6 +846,16 @@
                 </ul>
                 <button class="connect-free-btn" id="connectFreeBtn"><i class="fas fa-plug"></i> Connect free version</button>
             </div>
+
+            <!-- Right Telegram Proxy - compact -->
+            <div class="telegram-proxy-card">
+                <h4>Telegram Proxy #2</h4>
+                <div class="proxy-server">146.185.211.20:4443</div>
+                <div class="warning-badge">May work unstable</div>
+                <button class="connect-proxy-btn" data-proxy="tg://proxy?server=146.185.211.20&port=4443&secret=dd233d28ab5b4b47f1ba352305188f44">
+                    Connect in Telegram
+                </button>
+            </div>
         </div>
     </div>
 
@@ -775,7 +866,6 @@
             <p>🚀 30+ worldwide servers • Unlimited speed • Telegram proxies • Priority support</p>
         </div>
         <div class="pricing-row">
-            <!-- Zenith Pro (left) -->
             <div class="pricing-card pro-left">
                 <i class="fas fa-rocket" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Pro</h3>
@@ -794,7 +884,6 @@
                 <button class="pro-btn" data-plan="pro1" data-price="199"><i class="fab fa-telegram"></i> Buy — @Systemm_32</button>
             </div>
 
-            <!-- Zenith Premium (center) - BEST VALUE -->
             <div class="pricing-card premium-center">
                 <i class="fas fa-gem" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Premium</h3>
@@ -818,7 +907,6 @@
                 <button class="pro-btn" data-plan="premium" data-price="899"><i class="fab fa-telegram"></i> Buy Premium — @Systemm_32</button>
             </div>
 
-            <!-- Zenith Pro+ (right) -->
             <div class="pricing-card proplus-right">
                 <i class="fas fa-crown" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Pro+</h3>
@@ -883,6 +971,17 @@
 
     document.getElementById('heroInstallHappBtn')?.addEventListener('click', openInHapp);
     document.getElementById('connectFreeBtn')?.addEventListener('click', openInHapp);
+
+    const proxyBtns = document.querySelectorAll('.connect-proxy-btn');
+    proxyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const proxyUrl = btn.getAttribute('data-proxy');
+            window.location.href = proxyUrl;
+            setTimeout(() => {
+                showMessage("Opening Telegram proxy. If it doesn't work, the proxy may be unstable.", false);
+            }, 500);
+        });
+    });
 
     const proBtns = document.querySelectorAll('.pro-btn');
     proBtns.forEach(btn => {
