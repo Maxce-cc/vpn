@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Zenith VPN — 350GB free | 30+ servers | Premium</title>
+    <title>Zenith VPN — 350GB free | Soon Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -36,7 +36,7 @@
             padding: 0 24px;
         }
 
-        .btn-primary, .pro-btn, .server-chip, .feature-card, .pricing-card, .platform-card, .connect-free-btn, .telegram-proxy-card {
+        .btn-primary, .server-chip, .feature-card, .pricing-card, .platform-card, .connect-free-btn, .telegram-proxy-card {
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
@@ -360,10 +360,6 @@
             font-weight: 600;
             color: #2aabee;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
             font-size: 0.75rem;
             margin-top: 10px;
         }
@@ -406,33 +402,24 @@
             max-width: 340px;
         }
 
-        .pro-left {
-            order: 1;
-        }
-        .premium-center {
-            order: 2;
-            border: 2px solid #fbbf24;
-            background: linear-gradient(145deg, #1a1520, #0f0c18);
-            box-shadow: 0 0 25px rgba(251, 191, 36, 0.2);
+        .soon-card {
+            opacity: 0.7;
+            filter: grayscale(0.1);
             position: relative;
-            transform: scale(1.02);
+            overflow: hidden;
         }
-        .premium-center::before {
-            content: "⭐ BEST VALUE";
+        
+        .soon-card::after {
+            content: "🔒 SOON";
             position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 16px;
+            right: 16px;
             background: linear-gradient(100deg, #f59e0b, #ef4444);
-            padding: 4px 16px;
+            padding: 4px 12px;
             border-radius: 60px;
             font-size: 0.7rem;
             font-weight: 700;
             color: white;
-            white-space: nowrap;
-        }
-        .proplus-right {
-            order: 3;
         }
 
         .price {
@@ -524,10 +511,6 @@
             color: var(--accent-light);
         }
 
-        .premium-center li i {
-            color: #fbbf24;
-        }
-
         .connect-free-btn {
             background: rgba(255,255,255,0.08);
             border: 1.5px solid var(--accent);
@@ -550,26 +533,21 @@
             transform: scale(1.01);
         }
 
-        .pro-btn {
-            background: linear-gradient(100deg, #f59e0b, #ef4444);
+        .soon-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #444a66;
             width: 100%;
             padding: 12px;
             border-radius: 60px;
-            font-weight: bold;
-            border: none;
-            color: white;
-            cursor: pointer;
+            font-weight: 600;
+            color: #888cae;
+            cursor: not-allowed;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             margin-top: 8px;
-        }
-
-        .pro-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
         }
 
         .platform-cards {
@@ -688,13 +666,6 @@
                 max-width: 340px;
                 width: 100%;
             }
-            .premium-center {
-                transform: scale(1);
-                order: 0;
-            }
-            .pro-left, .proplus-right, .premium-center {
-                order: 0;
-            }
             .free-tier-wrapper {
                 flex-direction: column;
                 align-items: center;
@@ -810,16 +781,15 @@
 
     <div id="pricing"></div>
     <div class="section-title">Choose <span style="color: var(--accent-light);">your plan</span></div>
-    <div class="section-sub">Free forever or upgrade for the ultimate experience</div>
+    <div class="section-sub">Free forever — Premium plans opening soon</div>
     
-    <!-- FREE TIER with Telegram proxies on sides - compact design -->
+    <!-- FREE TIER with Telegram proxies -->
     <div class="pricing-group">
         <div class="pricing-header">
             <h3><i class="fas fa-gift"></i> Free Tier</h3>
             <p>No credit card required • Forever free</p>
         </div>
         <div class="free-tier-wrapper">
-            <!-- Left Telegram Proxy - compact -->
             <div class="telegram-proxy-card">
                 <h4>Telegram Proxy #1</h4>
                 <div class="proxy-server">proxy-dag.ru:443</div>
@@ -829,7 +799,6 @@
                 </button>
             </div>
 
-            <!-- Free VPN Card -->
             <div class="pricing-card free-card">
                 <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--accent-light);"></i>
                 <h3 style="margin-top: 10px;">Zenith Free</h3>
@@ -847,7 +816,6 @@
                 <button class="connect-free-btn" id="connectFreeBtn"><i class="fas fa-plug"></i> Connect free version</button>
             </div>
 
-            <!-- Right Telegram Proxy - compact -->
             <div class="telegram-proxy-card">
                 <h4>Telegram Proxy #2</h4>
                 <div class="proxy-server">146.185.211.20:4443</div>
@@ -859,14 +827,14 @@
         </div>
     </div>
 
-    <!-- PRO PLANS - with Premium in center -->
+    <!-- PREMIUM PLANS - SOON (disabled) -->
     <div class="pricing-group">
         <div class="pricing-header">
-            <h3><i class="fas fa-crown"></i> Premium Plans — More power, more freedom</h3>
-            <p>🚀 30+ worldwide servers • Unlimited speed • Telegram proxies • Priority support</p>
+            <h3><i class="fas fa-crown"></i> Premium Plans — Coming Soon</h3>
+            <p>🚀 We're preparing something amazing for you</p>
         </div>
         <div class="pricing-row">
-            <div class="pricing-card pro-left">
+            <div class="pricing-card soon-card">
                 <i class="fas fa-rocket" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Pro</h3>
                 <div class="price">199 ₽ <small>/month</small></div>
@@ -881,10 +849,10 @@
                     <li><i class="fas fa-check-circle"></i> 5 simultaneous devices</li>
                     <li><i class="fas fa-check-circle"></i> 24/7 priority support</li>
                 </ul>
-                <button class="pro-btn" data-plan="pro1" data-price="199"><i class="fab fa-telegram"></i> Buy — @Systemm_32</button>
+                <button class="soon-btn" disabled><i class="fas fa-clock"></i> Opening soon</button>
             </div>
 
-            <div class="pricing-card premium-center">
+            <div class="pricing-card soon-card">
                 <i class="fas fa-gem" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Premium</h3>
                 <div class="price">899 ₽ <small>/month</small></div>
@@ -896,18 +864,18 @@
                     <li><i class="fas fa-check-circle"></i> 30+ servers across EU, US, Asia, Australia</li>
                     <li><i class="fas fa-check-circle"></i> Unlimited speed with 10 Gbps ports</li>
                     <li><i class="fas fa-check-circle"></i> Priority routing with no congestion</li>
-                    <li><i class="fas fa-check-circle"></i> 3 dedicated Telegram proxies that always work</li>
-                    <li><i class="fas fa-check-circle"></i> Streaming optimized for Netflix, HBO, Disney+, BBC iPlayer</li>
-                    <li><i class="fas fa-check-circle"></i> Gaming mode with low ping for CS2, Valorant, LoL, COD</li>
-                    <li><i class="fas fa-check-circle"></i> 10 simultaneous devices for the whole family</li>
-                    <li><i class="fas fa-check-circle"></i> 24/7 VIP support with response in minutes</li>
-                    <li><i class="fas fa-check-circle"></i> Dedicated IP option available on request</li>
-                    <li><i class="fas fa-check-circle"></i> 30-day money-back guarantee, risk free</li>
+                    <li><i class="fas fa-check-circle"></i> 3 dedicated Telegram proxies</li>
+                    <li><i class="fas fa-check-circle"></i> Streaming optimized for Netflix, HBO, Disney+</li>
+                    <li><i class="fas fa-check-circle"></i> Gaming mode — low ping for CS2, Valorant, LoL</li>
+                    <li><i class="fas fa-check-circle"></i> 10 simultaneous devices</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 VIP support</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated IP option available</li>
+                    <li><i class="fas fa-check-circle"></i> 30-day money-back guarantee</li>
                 </ul>
-                <button class="pro-btn" data-plan="premium" data-price="899"><i class="fab fa-telegram"></i> Buy Premium — @Systemm_32</button>
+                <button class="soon-btn" disabled><i class="fas fa-clock"></i> Opening soon</button>
             </div>
 
-            <div class="pricing-card proplus-right">
+            <div class="pricing-card soon-card">
                 <i class="fas fa-crown" style="font-size: 1.8rem; color: #fbbf24;"></i>
                 <h3 style="margin-top: 8px;">Zenith Pro+</h3>
                 <div class="price">499 ₽ <small>/3 months</small></div>
@@ -922,7 +890,7 @@
                     <li><i class="fas fa-check-circle"></i> 7 simultaneous devices</li>
                     <li><i class="fas fa-check-circle"></i> 24/7 VIP support</li>
                 </ul>
-                <button class="pro-btn" data-plan="pro3" data-price="499"><i class="fab fa-telegram"></i> Buy — @Systemm_32</button>
+                <button class="soon-btn" disabled><i class="fas fa-clock"></i> Opening soon</button>
             </div>
         </div>
     </div>
@@ -937,10 +905,10 @@
     </div>
 
     <div class="cta-section">
-        <h3>Need help or want to buy Premium?</h3>
-        <p style="margin: 12px 0 8px;">Contact our manager directly on Telegram — fast response, instant activation</p>
+        <h3>Stay tuned for Premium launch!</h3>
+        <p style="margin: 12px 0 8px;">Follow us on Telegram to be the first to know when Premium plans are available</p>
         <a href="https://t.me/Systemm_32" target="_blank" class="telegram-link" id="telegramContactBtn">
-            <i class="fab fa-telegram fa-lg"></i> @Systemm_32 — buy Zenith VPN
+            <i class="fab fa-telegram fa-lg"></i> @Systemm_32 — Zenith VPN
         </a>
     </div>
 
@@ -983,28 +951,21 @@
         });
     });
 
-    const proBtns = document.querySelectorAll('.pro-btn');
-    proBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const plan = btn.getAttribute('data-plan');
-            let planName = "";
-            if(plan === 'pro1') planName = "Zenith Pro (1 month / 199₽)";
-            else if(plan === 'pro3') planName = "Zenith Pro+ (3 months / 499₽)";
-            else planName = "Zenith Premium (899₽/month)";
-            window.open('https://t.me/Systemm_32', '_blank');
-            showMessage(`📱 Write on Telegram: "I want to buy ${planName}" — manager @Systemm_32 will answer you`, false);
-        });
-    });
-
     document.querySelectorAll('.platform-card').forEach(card => {
         card.addEventListener('click', () => {
             const plat = card.getAttribute('data-platform');
             if(plat === 'Happ') showMessage("📱 Click 'Connect free version' to auto-install subscription in Happ.", false);
-            else showMessage(`🔗 For ${plat}: import subscription using the free link (contact @Systemm_32 for Premium access)`, false);
+            else showMessage(`🔗 For ${plat}: you can import the free subscription link`, false);
         });
     });
 
-    document.getElementById('accountBtn')?.addEventListener('click', () => showMessage('🔐 Free version: click "Connect free version". For Premium plans (30+ servers, Telegram proxies) contact @Systemm_32', false));
+    document.getElementById('accountBtn')?.addEventListener('click', () => showMessage('🔐 Free version is fully available. Premium plans coming soon — stay tuned!', false));
+    
+    document.querySelectorAll('.soon-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            showMessage("🚀 Premium plans are coming soon! Follow @Systemm_32 on Telegram for updates.", false);
+        });
+    });
 </script>
 </body>
 </html>
